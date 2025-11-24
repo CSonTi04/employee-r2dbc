@@ -3,6 +3,7 @@ package employees;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -32,6 +33,16 @@ public class ReactorMain {
         Mono.just(new Employee("John", 1980))
                 .subscribe(System.out::println);
 
+        Flux.just(new Employee("John Doe", 1970), new Employee("Jane Doe", 1980))
+                .map(e -> e.getAgeAt(1960))
+                .doOnError(t -> t.printStackTrace())
+                .onErrorReturn(0)
+                .subscribe(System.out::println);
+
+        Employee employee = new Employee("John Doe", 1970);
+        System.out.println(employee.getFirstYears());
+
+        System.out.println("End");
 
 
     }
