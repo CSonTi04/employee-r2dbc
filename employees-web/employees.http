@@ -27,5 +27,23 @@ Content-Type: application/json
     "name": "John Smith"
 }
 
+### Update employee with mismatched ID
+PUT http://localhost:8080/api/employees/1
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "John Smith"
+}
+
+### Update employee not found
+PUT http://localhost:8080/api/employees/999
+Content-Type: application/json
+
+{
+  "id": 999,
+  "name": "John Smith"
+}
+
 ### Delete employee
 DELETE http://localhost:8080/api/employees/1

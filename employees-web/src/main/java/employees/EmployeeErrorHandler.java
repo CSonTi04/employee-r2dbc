@@ -1,0 +1,26 @@
+package employees;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import reactor.core.publisher.Mono;
+
+import java.net.URI;
+
+@ControllerAdvice
+public class EmployeeErrorHandler {
+
+    @ExceptionHandler
+    public Mono<ProblemDetail> handle(IllegalArgumentException e) {
+        return Mono.just(e)
+                .map(EmployeeErrorHandler::toProblemDetail);
+    }
+
+    private static ProblemDetail toProblemDetail(IllegalArgumentException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problemDetail.setType(URI.create("employees/bad-request"));
+        problemDetail.setTitle("Bad Request");
+        return problemDetail;
+    }
+}
