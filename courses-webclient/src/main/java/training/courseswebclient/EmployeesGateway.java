@@ -10,9 +10,8 @@ import reactor.core.publisher.Flux;
 public class EmployeesGateway {
 
     public Flux<Employee> findAll(){
-        return WebClient.create("http://localhost:8080")
+        return WebClient.create("http://localhost:8080/api/employees")
                 .get()
-                .uri("/api/employees")
                 .retrieve()
                 .bodyToFlux(Employee.class);
     }
