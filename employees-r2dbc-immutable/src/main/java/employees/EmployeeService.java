@@ -34,7 +34,7 @@ public class EmployeeService {
 
     // MapStruct kéne használni
     private static EmployeeDto toDto(Employee employee) {
-        return new EmployeeDto(employee.getId(), employee.getName());
+        return new EmployeeDto(employee.id(), employee.name());
     }
 
     private static Employee toEntity(EmployeeDto employeeDto) {
