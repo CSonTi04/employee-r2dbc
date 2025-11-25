@@ -18,7 +18,11 @@ public class EmployeeService {
     }
 
     public Mono<EmployeeDto> findById(long id) {
-        return repository.findDtoById(id, EmployeeDto.class);
+        return repository.findDtoById(id,EmployeeDto.class );
+    }
+
+    public Mono<ShortEmployeeDto> findShortyId(long id) {
+        return repository.findDtoById(id,ShortEmployeeDto.class );
     }
 
     public Mono<EmployeeDto> save(Mono<EmployeeDto> employeeDto) {
