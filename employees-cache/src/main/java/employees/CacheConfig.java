@@ -14,11 +14,11 @@ import tools.jackson.databind.ObjectMapper;
 @Configuration(proxyBeanMethods = false)
 public class CacheConfig {
     @Bean
-    public ReactiveRedisTemplate<Long, Employee> reactiveRedisTemplate(ReactiveRedisConnectionFactory connectionFactory) {
+    public ReactiveRedisTemplate<Long, EmployeeDto> reactiveRedisTemplate(ReactiveRedisConnectionFactory connectionFactory) {
         ObjectMapper objectMapper = new ObjectMapper();
-        RedisSerializer<Employee> redisSerializer = new JacksonJsonRedisSerializer<>(objectMapper, Employee.class);
-        RedisSerializationContext<Long, Employee> context = RedisSerializationContext
-                .<Long, Employee>newSerializationContext(RedisSerializer.string())
+        RedisSerializer<EmployeeDto> redisSerializer = new JacksonJsonRedisSerializer<>(objectMapper, EmployeeDto.class);
+        RedisSerializationContext<Long, EmployeeDto> context = RedisSerializationContext
+                .<Long, EmployeeDto>newSerializationContext(RedisSerializer.string())
                 .key(new GenericToStringSerializer<>(Long.class))
                 .hashKey(new JacksonJsonRedisSerializer<>(Long.class))
                 .value(redisSerializer)
