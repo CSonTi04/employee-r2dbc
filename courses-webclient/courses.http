@@ -1,0 +1,4 @@
+### GET employees
+GET http://localhost:8081/api/employees
+
+###
