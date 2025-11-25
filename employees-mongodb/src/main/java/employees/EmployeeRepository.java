@@ -11,6 +11,7 @@ public interface EmployeeRepository extends ReactiveMongoRepository<Employee, St
 
     <T> Mono<T> findDtoById(String id, Class<T> clazz);
 
+    //Itt lehet SPEL-t használni paraméterezéshez
     @Query("""
             { 'name': ?0, 'id': { $ne: null } }
     """)
