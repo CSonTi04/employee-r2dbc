@@ -8,13 +8,27 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/employees")
+@RequestMapping("/api")
 public class CourseController {
 
-    public final EmployeesGateway employeesGateway;
+    public final EmployeesClient employeesClient;
 
-    @GetMapping
+    private final CourseService courseService;
+
+    @GetMapping("/employees")
     public Flux<Employee> findAll() {
-        return employeesGateway.findAll();
+        return employeesClient.findAll();
+    }
+
+    @GetMapping("/attendances")
+    public Flux<CourseAttendDto> findAllCourseAttends() {
+        return courseService.findAll()
+                .flatMap(attend -> employeesClient.findById(attend.employeeId())
+                        .map(emp -> new CourseAttendDto(
+                                attend.courseCode(),
+                                attend.employeeId(),
+                                emp.name()
+                        ))
+                );
     }
 }
