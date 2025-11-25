@@ -61,7 +61,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteById(@PathVariable long id) {
+    public Mono<Void> deleteById(@PathVariable String id) {
         return service.deleteById(id);
     }
 }
