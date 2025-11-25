@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>training</groupId>
-    <artifactId>employees-web</artifactId>
+    <artifactId>employees-r2dbc-immutable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>employees-web</name>
-    <description>employees-web</description>
+    <name>employees-r2dbc-immutable</name>
+    <description>employees-r2dbc-immutable</description>
     <url/>
     <licenses>
         <license/>
