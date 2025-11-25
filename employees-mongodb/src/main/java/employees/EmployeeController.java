@@ -24,7 +24,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<EmployeeDto>> findById(@PathVariable long id) {
+    public Mono<ResponseEntity<EmployeeDto>> findById(@PathVariable String id) {
         return service
                 .findById(id)
                 .map(ResponseEntity::ok)
@@ -32,7 +32,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}/short")
-    public Mono<ResponseEntity<ShortEmployeeDto>> findShortById(@PathVariable long id) {
+    public Mono<ResponseEntity<ShortEmployeeDto>> findShortById(@PathVariable String id) {
         return service
                 .findShortyId(id)
                 .map(ResponseEntity::ok)
@@ -52,7 +52,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public Mono<ResponseEntity<EmployeeDto>> update(@PathVariable long id, @Valid @RequestBody Mono<EmployeeDto> employeeDto) {
         return employeeDto
-                .filter(e -> e.id() != null && e.id() == id)
+                .filter(e -> e.id() != null && e.id().equals(id))
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("ID mismatch: %d".formatted(id))))
                 .flatMap(e -> service.save(Mono.just(e)))
                 .map(ResponseEntity::ok)
