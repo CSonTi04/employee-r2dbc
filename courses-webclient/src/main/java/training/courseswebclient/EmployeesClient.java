@@ -11,5 +11,6 @@ public interface EmployeesClient {
     @GetExchange
     Flux<Employee> findAll();
 
+    @GetExchange
     Mono<Employee> findById(Long id);
 }
