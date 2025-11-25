@@ -68,6 +68,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>r2dbc-postgresql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>name.nkonev.r2dbc-migrate</groupId>
+            <artifactId>r2dbc-migrate-spring-boot-starter</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
