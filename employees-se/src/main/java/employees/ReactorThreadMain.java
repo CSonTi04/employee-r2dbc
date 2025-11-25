@@ -19,7 +19,7 @@ public class ReactorThreadMain {
                 .subscribeOn(pool)//Áttereli ide a szálakat
                 //Publish on ws subscribe on
                 //Publish hová tegye
-                //Subscribe on honnan vegye
+                //Subscribe hol fusson?
                 .doOnNext(e -> System.out.println("Mapping: " + e + " on thread " + Thread.currentThread().getName()))
                 .map(Employee::name)
                 //.subscribeOn(pool)
