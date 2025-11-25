@@ -10,6 +10,7 @@ public interface EmployeeRepository extends ReactiveCrudRepository<Employee, Lon
     @Query("select id, name from employees")
     Flux<EmployeeDto> findDtoAll() ;
 
+    @Query("select id, name from employees where id = :id")
     <T> Mono<T> findDtoById(Long id, Class<T> clazz);
 
 }
